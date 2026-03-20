@@ -27,8 +27,12 @@ body {
     height: 100px;
     background: #ffc0cb;
     border-radius: 50% 50% 45% 45%;
-    position: relative;
+    position: relative; /* Clave para que funcionen los efectos */
     border: 2px solid #ff99aa;
+    cursor: pointer; /* Para que se den cuenta que se puede hacer clic */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /* El gordito (Vos) */
