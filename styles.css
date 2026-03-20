@@ -11,75 +11,107 @@ body {
 }
 
 .title {
-    font-size: 2rem;
+    font-size: 2.5rem;
     color: #333;
     margin-bottom: 50px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
 }
 
 .container {
     display: flex;
     align-items: center;
     gap: 20px;
+    position: relative;
 }
 
+/* Diseño general de los Chanchitos (como el de antes) */
 .pig {
-    width: 120px;
-    height: 100px;
+    width: 140px; /* Tamaño "gordito" */
+    height: 120px;
     background: #ffc0cb;
     border-radius: 50% 50% 45% 45%;
-    position: relative; /* Clave para que funcionen los efectos */
-    border: 2px solid #ff99aa;
-    cursor: pointer; /* Para que se den cuenta que se puede hacer clic */
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    position: relative;
+    border: 3px solid #ff99aa;
+    cursor: pointer; /* Muestra la manito al pasar */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
 
-/* El gordito (Vos) */
-#pig-left {
-    width: 140px;
-    height: 120px;
-    animation: moveLeft 3s infinite alternate;
-}
-
-/* Sombrerito */
-#pig-left::before {
-    content: '🎩';
-    position: absolute;
-    top: -30px;
-    left: 40px;
-    font-size: 30px;
-}
-
-/* Marti */
-#pig-right {
-    animation: moveRight 3s infinite alternate;
-}
-
-/* Moño de Marti */
-#pig-right::before {
-    content: '🎀';
-    position: absolute;
-    top: -15px;
-    right: 20px;
-    font-size: 25px;
-}
-
+/* El hocico */
 .snout {
-    width: 40px;
-    height: 30px;
+    width: 45px;
+    height: 35px;
     background: #ff99aa;
     border-radius: 50%;
     position: absolute;
-    top: 50%;
+    top: 55%;
     left: 50%;
     transform: translate(-50%, -50%);
+    border: 2px solid #ff8899;
 }
 
+/* Agujeros del hocico */
+.snout::before, .snout::after {
+    content: '';
+    width: 6px;
+    height: 6px;
+    background: #884444;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.snout::before { left: 12px; }
+.snout::after { right: 12px; }
+
+/* --- El Gordito (Vos - Izquierda) con Galerita --- */
+#pig-left {
+    animation: moveLeft 3s infinite alternate ease-in-out;
+}
+#pig-left::before {
+    content: '🎩';
+    position: absolute;
+    top: -40px;
+    left: 45px;
+    font-size: 40px;
+}
+
+/* --- Marti (Derecha) con Moño --- */
+#pig-right {
+    width: 120px; /* Un pelín más chica */
+    height: 100px;
+    animation: moveRight 3s infinite alternate ease-in-out;
+}
+#pig-right::before {
+    content: '🎀';
+    position: absolute;
+    top: -20px;
+    right: 25px;
+    font-size: 35px;
+}
+
+/* --- Animación del Beso --- */
 @keyframes moveLeft {
-    to { transform: translateX(40px); }
+    0% { transform: translateX(0); }
+    100% { transform: translateX(50px); } /* Se mueven hacia el centro */
+}
+@keyframes moveRight {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50px); } /* Se mueven hacia el centro */
 }
 
-@keyframes moveRight {
-    to { transform: translateX(-40px); }
+/* --- Corazones flotantes del beso --- */
+.heart {
+    position: absolute;
+    font-size: 1.5rem;
+    color: #ff4d4d;
+    opacity: 0;
+    animation: heartFloat 3s infinite;
+}
+#heart-1 { left: 45%; top: 20%; animation-delay: 0s; }
+#heart-2 { left: 55%; top: 10%; animation-delay: 1.5s; }
+
+@keyframes heartFloat {
+    0% { transform: translateY(0) scale(1); opacity: 0; }
+    50% { opacity: 1; }
+    100% { transform: translateY(-100px) scale(1.5); opacity: 0; }
 }
