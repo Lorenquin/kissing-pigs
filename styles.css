@@ -1,351 +1,81 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 body {
-    font-family: 'Arial', sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    min-height: 100vh;
+    margin: 0;
+    height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
+    font-family: 'Arial', sans-serif;
     overflow: hidden;
 }
 
-.title-container {
-    margin-bottom: 30px;
-}
-
-h1 {
-    color: white;
-    font-size: 2.5em;
-    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
-    text-align: center;
+.title {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 50px;
 }
 
 .container {
     display: flex;
-    justify-content: center;
     align-items: center;
     gap: 20px;
-    position: relative;
-    height: 400px;
 }
 
-/* ===== GORDITO (Left Pig - Bigger) ===== */
-.pig.gordito {
-    width: 140px;
-    height: 140px;
+.pig {
+    width: 120px;
+    height: 100px;
+    background: #ffc0cb;
+    border-radius: 50% 50% 45% 45%;
     position: relative;
-    animation: moveLeft 3s ease-in-out infinite;
+    border: 2px solid #ff99aa;
 }
 
-.pig.gordito .head {
+/* El gordito (Vos) */
+#pig-left {
     width: 140px;
     height: 120px;
-    background: #ffa3c7;
-    border-radius: 70px 70px 60px 60px / 75px 75px 55px 55px;
-    position: relative;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), inset -3px -3px 8px rgba(0, 0, 0, 0.1);
+    animation: moveLeft 3s infinite alternate;
 }
 
-.pig.gordito .body {
-    width: 110px;
-    height: 80px;
-    background: #ffb3d9;
-    border-radius: 50%;
+/* Sombrerito */
+#pig-left::before {
+    content: '🎩';
     position: absolute;
-    bottom: 5px;
-    left: 15px;
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+    top: -30px;
+    left: 40px;
+    font-size: 30px;
 }
 
-/* Hat for Gordito */
-.pig.gordito .hat {
-    width: 100px;
-    height: 50px;
-    background: #2c2c2c;
-    border-radius: 0 0 5px 5px;
+/* Marti */
+#pig-right {
+    animation: moveRight 3s infinite alternate;
+}
+
+/* Moño de Marti */
+#pig-right::before {
+    content: '🎀';
     position: absolute;
-    top: -45px;
-    left: 20px;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+    top: -15px;
+    right: 20px;
+    font-size: 25px;
 }
 
-.pig.gordito .hat::before {
-    content: '';
-    width: 120px;
-    height: 8px;
-    background: #ffc700;
-    border-radius: 50%;
-    position: absolute;
-    top: 40px;
-    left: -10px;
-}
-
-/* ===== MARTI (Right Pig - Smaller) ===== */
-.pig.marti {
-    width: 100px;
-    height: 100px;
-    position: relative;
-    animation: moveRight 3s ease-in-out infinite;
-    transform: scaleX(-1);
-}
-
-.pig.marti .head {
-    width: 100px;
-    height: 85px;
-    background: #ffd6e8;
-    border-radius: 50px 50px 45px 45px / 55px 55px 40px 40px;
-    position: relative;
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2), inset -2px -2px 6px rgba(0, 0, 0, 0.1);
-}
-
-.pig.marti .body {
-    width: 80px;
-    height: 60px;
-    background: #ffc7e0;
-    border-radius: 50%;
-    position: absolute;
-    bottom: 5px;
-    left: 10px;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-}
-
-/* Bow for Marti on right ear */
-.pig.marti .bow {
-    width: 30px;
-    height: 25px;
-    background: #ff1493;
-    border-radius: 50%;
-    position: absolute;
-    top: -5px;
-    right: -10px;
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
-}
-
-.pig.marti .bow::before,
-.pig.marti .bow::after {
-    content: '';
-    width: 15px;
-    height: 20px;
-    background: #ff1493;
-    border-radius: 50%;
-    position: absolute;
-    top: 5px;
-}
-
-.pig.marti .bow::before {
-    left: -12px;
-}
-
-.pig.marti .bow::after {
-    right: -12px;
-}
-
-/* ===== SHARED PIG FEATURES ===== */
-.pig .snout {
-    width: 28px;
-    height: 24px;
-    background: #ffb8d4;
-    border-radius: 50%;
-    position: absolute;
-    bottom: 18px;
-    left: 50%;
-    transform: translateX(-50%);
-    box-shadow: inset -1px -1px 3px rgba(0, 0, 0, 0.1);
-}
-
-.pig .snout::before,
-.pig .snout::after {
-    content: '';
-    width: 5px;
-    height: 5px;
-    background: #333;
+.snout {
+    width: 40px;
+    height: 30px;
+    background: #ff99aa;
     border-radius: 50%;
     position: absolute;
     top: 50%;
-    transform: translateY(-50%);
-}
-
-.pig .snout::before {
-    left: 6px;
-}
-
-.pig .snout::after {
-    right: 6px;
-}
-
-/* Eyes */
-.pig .eye {
-    width: 12px;
-    height: 12px;
-    background: #fff;
-    border-radius: 50%;
-    border: 2px solid #333;
-    position: absolute;
-    top: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.pig .left-eye {
-    left: 20px;
-}
-
-.pig .right-eye {
-    right: 20px;
-}
-
-.pig .pupil {
-    width: 5px;
-    height: 5px;
-    background: #333;
-    border-radius: 50%;
-}
-
-/* Eyelashes for Marti */
-.pig.marti .lash {
-    position: absolute;
-    background: #333;
-    width: 2px;
-}
-
-.pig.marti .top-lash {
-    height: 4px;
-    top: -4px;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translate(-50%, -50%);
 }
 
-.pig.marti .bottom-lash {
-    height: 3px;
-    bottom: -3px;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-/* Ears */
-.pig .ear {
-    width: 20px;
-    height: 28px;
-    background: #ffa3c7;
-    border-radius: 50% 50% 40% 40%;
-    position: absolute;
-    top: -8px;
-    border: 2px solid #ff88b8;
-}
-
-.pig .left-ear {
-    left: 15px;
-}
-
-.pig .right-ear {
-    right: 15px;
-}
-
-/* Cheeks */
-.pig .cheek {
-    width: 15px;
-    height: 12px;
-    background: rgba(255, 105, 180, 0.4);
-    border-radius: 50%;
-    position: absolute;
-    top: 45px;
-}
-
-.pig .left-cheek {
-    left: 5px;
-}
-
-.pig .right-cheek {
-    right: 5px;
-}
-
-/* ===== ANIMATIONS ===== */
 @keyframes moveLeft {
-    0%, 100% {
-        transform: translateX(0);
-    }
-    50% {
-        transform: translateX(50px);
-    }
+    to { transform: translateX(40px); }
 }
 
 @keyframes moveRight {
-    0%, 100% {
-        transform: scaleX(-1) translateX(0);
-    }
-    50% {
-        transform: scaleX(-1) translateX(-50px);
-    }
-}
-
-/* Kiss Zone */
-.kiss-zone {
-    width: 60px;
-    height: 60px;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-/* Floating Hearts */
-.heart {
-    position: absolute;
-    font-size: 1.8em;
-    opacity: 0;
-    animation: heartFloat 2.5s ease-in forwards;
-}
-
-@keyframes heartFloat {
-    0% {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
-    50% {
-        opacity: 1;
-    }
-    100% {
-        opacity: 0;
-        transform: translateY(-80px) scale(0.5);
-    }
-}
-
-.heart[style*="--delay: 0s"] {
-    animation-delay: 1.5s;
-    left: 0;
-}
-
-.heart[style*="--delay: 0.3s"] {
-    animation-delay: 1.8s;
-    left: 15px;
-}
-
-.heart[style*="--delay: 0.6s"] {
-    animation-delay: 2.1s;
-    top: -15px;
-}
-
-.heart[style*="--delay: 0.9s"] {
-    animation-delay: 2.4s;
-    right: 15px;
-}
-
-.heart[style*="--delay: 1.2s"] {
-    animation-delay: 2.7s;
-    right: 0;
-}
-
-.heart[style*="--delay: 1.5s"] {
-    animation-delay: 3s;
-    left: 50%;
+    to { transform: translateX(-40px); }
 }
