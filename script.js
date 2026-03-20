@@ -1,19 +1,35 @@
-// Restart animation on click
-document.addEventListener('click', function() {
-    const pigs = document.querySelectorAll('.pig');
-    pigs.forEach(pig => {
-        pig.style.animation = 'none';
-        setTimeout(() => {
-            pig.style.animation = '';
-        }, 10);
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('💕 Kissing Pigs Animation - Para Marti, de tu gordito 💕');
+    
+    const leftPig = document.getElementById('pig-left');
+    const rightPig = document.getElementById('pig-right');
+    const kissZone = document.querySelector('.kiss-zone');
+    
+    // Click to restart hearts animation
+    document.addEventListener('click', function() {
+        const hearts = document.querySelectorAll('.heart');
+        hearts.forEach(heart => {
+            heart.style.animation = 'none';
+            setTimeout(() => {
+                heart.style.animation = '';
+            }, 10);
+        });
     });
     
-    // Trigger hearts animation
-    const container = document.querySelector('.container');
-    container.style.animation = 'none';
-    setTimeout(() => {
-        container.style.animation = '';
-    }, 10);
+    // Hover effects
+    leftPig.addEventListener('mouseenter', function() {
+        this.style.transform = 'scale(1.05)';
+    });
+    
+    leftPig.addEventListener('mouseleave', function() {
+        this.style.transform = 'scale(1)';
+    });
+    
+    rightPig.addEventListener('mouseenter', function() {
+        this.style.transform = 'scaleX(-1) scale(1.05)';
+    });
+    
+    rightPig.addEventListener('mouseleave', function() {
+        this.style.transform = 'scaleX(-1) scale(1)';
+    });
 });
-
-console.log('🐷 Kissing pigs animation loaded!');
